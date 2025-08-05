@@ -1,0 +1,30 @@
+/* src/styles/main.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #c8102e; /* LFC Red */
+  color: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: white;
+  color: #c8102e;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #eee;
+}
