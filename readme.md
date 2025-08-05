@@ -26,6 +26,5 @@ Whether you're smashing out "You'll Never Walk Alone" or racing through player n
 ## 🚀 Tech Stack
 
 - ⚛️ React (Vite)
-- 🎨 TailwindCSS
 - 🔢 Custom JSON datasets
 - ⌨️ Typing logic from scratch (inspired by Monkeytype)
