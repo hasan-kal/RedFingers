@@ -1,28 +1,35 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function Timer({ isTyping, duration, onComplete }) {
+export default function Timer({ duration, isTyping, testEnded, onTimeUp }) {
   const [timeLeft, setTimeLeft] = useState(duration);
 
   useEffect(() => {
-    if (!isTyping || timeLeft === 0) return;
+    let interval = null;
 
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          onComplete();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    if (isTyping && !testEnded) {
+      interval = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(interval);
+            onTimeUp();
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
 
     return () => clearInterval(interval);
-  }, [isTyping, timeLeft, onComplete]);
+  }, [isTyping, testEnded]);
+
+  // Reset the timer when the duration changes (new test started)
+  useEffect(() => {
+    setTimeLeft(duration);
+  }, [duration]);
 
   return (
-    <div className="timer-display">
-      ⏱ Time Left: <strong>{timeLeft}s</strong>
+    <div className="timer">
+      <h2>Time Left: {timeLeft}s</h2>
     </div>
   );
 }

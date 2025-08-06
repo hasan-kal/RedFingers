@@ -57,11 +57,12 @@ export default function App() {
     setIsTyping(false);
     setTestEnded(false);
     setUserInput("");
+    setSampleText(getRandomText());
   };
 
 
   return (
-    <div className="container" onClick={handleTypingStart}>
+    <div className="container">
       <h1>🔴 RedFingers</h1>
       <p>You’ll Never Type Alone.</p>
 
