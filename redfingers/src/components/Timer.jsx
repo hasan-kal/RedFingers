@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function Timer({ duration, isTyping, testEnded, onTimeUp }) {
+export default function Timer({ duration, isTyping, testEnded, onComplete }) {
   const [timeLeft, setTimeLeft] = useState(duration);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function Timer({ duration, isTyping, testEnded, onTimeUp }) {
         setTimeLeft((prev) => {
           if (prev <= 1) {
             clearInterval(interval);
-            onTimeUp();
+            onComplete();
             return 0;
           }
           return prev - 1;
