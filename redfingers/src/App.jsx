@@ -32,7 +32,7 @@ export default function App() {
     return words.join(" ");
   };
 
-  const [sampleText, setSampleText] = useState(getRandomText());
+  const [sampleText] = useState(getRandomText());
 
   const getTime = () => {
     switch (difficulty) {
@@ -44,9 +44,6 @@ export default function App() {
 
   const duration = getTime(); // dynamic duration based on difficulty
 
-  const handleTypingStart = () => {
-    if (!isTyping) setIsTyping(true);
-  };
 
   const handleTestComplete = () => {
     setIsTyping(false);
@@ -61,7 +58,7 @@ export default function App() {
 
 
   return (
-    <div className="container" onClick={handleTypingStart}>
+    <div className="container">
       <h1>🔴 RedFingers</h1>
       <p>You’ll Never Type Alone.</p>
 
