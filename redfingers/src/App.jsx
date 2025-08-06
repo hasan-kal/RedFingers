@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import StatsTracker from "./components/StatsTracker";
 import DifficultySelector from "./components/DifficultySelector";
 import TypingBox from "./components/TypingBox";
 import Timer from "./components/Timer";
@@ -32,7 +33,7 @@ export default function App() {
     return words.join(" ");
   };
 
-  const [sampleText] = useState(getRandomText());
+  const [sampleText, setSampleText] = useState(getRandomText());
 
   const getTime = () => {
     switch (difficulty) {
@@ -44,16 +45,42 @@ export default function App() {
 
   const duration = getTime(); // dynamic duration based on difficulty
 
+  useEffect(() => {
+    const newSampleText = getRandomText();
+    setSampleText(newSampleText);
+    setIsTyping(false);
+    setTestEnded(false);
+    setUserInput("");
+  }, [difficulty]);
+
 
   const handleTestComplete = () => {
     setIsTyping(false);
     setTestEnded(true);
+
+    const totalChars = userInput.length;
+    const correctChars = userInput.split('').filter((char, idx) => char === sampleText[idx]).length;
+    const accuracy = ((correctChars / totalChars) * 100).toFixed(2);
+    const wpm = ((correctChars / 5) / (duration / 60)).toFixed(2);
+
+    const newStat = {
+      date: new Date().toLocaleString(),
+      wpm,
+      accuracy,
+      total: totalChars,
+      correct: correctChars,
+    };
+
+    const existingStats = JSON.parse(localStorage.getItem("typingStats")) || [];
+    existingStats.unshift(newStat);
+    localStorage.setItem("typingStats", JSON.stringify(existingStats));
   };
 
   const handleRestart = () => {
     setIsTyping(false);
     setTestEnded(false);
     setUserInput("");
+    setSampleText(getRandomText());
   };
 
 
@@ -68,6 +95,7 @@ export default function App() {
         <>
           <Timer isTyping={isTyping} duration={duration} onComplete={handleTestComplete} />
           <TypingBox
+            key={sampleText}
             text={sampleText}
             onStart={() => setIsTyping(true)}
             userInput={userInput}
@@ -82,6 +110,7 @@ export default function App() {
           <button className="button" onClick={handleRestart} style={{ marginTop: "2rem" }}>
             🔁 Restart
           </button>
+          <StatsTracker />
         </>
       )}
     </div>
