@@ -15,12 +15,15 @@ export default function TypingBox({ text, userInput, setUserInput, onStart }) {
 
   const renderText = () => {
     return text.split("").map((char, index) => {
-      let color = "gray";
+      let className = "char";
       if (index < userInput.length) {
-        color = char === userInput[index] ? "green" : "red";
+        className += char === userInput[index] ? " correct" : " incorrect";
+      }
+      if (index === userInput.length) {
+        className += " typing";
       }
       return (
-        <span key={index} style={{ color: color }}>
+        <span key={index} className={className}>
           {char}
         </span>
       );
