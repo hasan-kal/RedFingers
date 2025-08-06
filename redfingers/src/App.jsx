@@ -1,9 +1,13 @@
 import { useState } from "react";
 import ModeSelector from "./components/ModeSelector";
-import "./styles/main.css"; // Ensure CSS is imported
+import TypingBox from "./components/TypingBox";
+import "./styles/main.css";
 
 export default function App() {
   const [selectedMode, setSelectedMode] = useState("Chants");
+
+  // Temporary mock text (we'll replace this with real data soon)
+  const sampleText = "You’ll Never Walk Alone";
 
   return (
     <div className="container">
@@ -12,9 +16,7 @@ export default function App() {
 
       <ModeSelector selectedMode={selectedMode} onSelectMode={setSelectedMode} />
 
-      <p style={{ marginTop: "2rem" }}>
-        <strong>Current Mode:</strong> {selectedMode}
-      </p>
+      <TypingBox text={sampleText} />
     </div>
   );
 }
