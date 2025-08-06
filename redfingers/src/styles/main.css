@@ -73,3 +73,20 @@ body {
   border-radius: 4px;
   outline: none;
 }
+
+.timer-display {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.results-box {
+  margin-top: 2rem;
+  background-color: white;
+  color: #c8102e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
