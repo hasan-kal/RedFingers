@@ -53,3 +53,23 @@ body {
   background-color: white;
   color: #c8102e;
 }
+
+.typing-box {
+  margin-top: 2rem;
+}
+
+.display-text {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+.typing-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+}
