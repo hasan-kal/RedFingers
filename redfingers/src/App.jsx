@@ -1,19 +1,48 @@
 import { useState } from "react";
-import ModeSelector from "./components/ModeSelector";
+import DifficultySelector from "./components/DifficultySelector";
 import TypingBox from "./components/TypingBox";
 import Timer from "./components/Timer";
 import Results from "./components/Results";
 import "./styles/main.css";
-import { modeData } from "./data/data";
+import { wordBank } from "./data/data";
 
 export default function App() {
-  const [selectedMode, setSelectedMode] = useState("Chants");
   const [isTyping, setIsTyping] = useState(false);
   const [testEnded, setTestEnded] = useState(false);
   const [userInput, setUserInput] = useState("");
-  const [sampleText, setSampleText] = useState(getRandomText("Chants"));
+  const [difficulty, setDifficulty] = useState("Medium");
 
-  const duration = 30; // seconds
+  const getWordCount = () => {
+    switch (difficulty) {
+      case "Easy": return 30;
+      case "Hard": return 60;
+      default: return 45;
+    }
+  };
+
+  const getRandomText = () => {
+    const targetWords = getWordCount();
+    let words = [];
+
+    for (let i = 0; i < targetWords; i++) {
+      const randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
+      words.push(randomWord);
+    }
+
+    return words.join(" ");
+  };
+
+  const [sampleText, setSampleText] = useState(getRandomText());
+
+  const getTime = () => {
+    switch (difficulty) {
+      case "Easy": return 45;
+      case "Hard": return 20;
+      default: return 30;
+    }
+  };
+
+  const duration = getTime(); // dynamic duration based on difficulty
 
   const handleTypingStart = () => {
     if (!isTyping) setIsTyping(true);
@@ -24,32 +53,19 @@ export default function App() {
     setTestEnded(true);
   };
 
-  const handleModeChange = (mode) => {
-    setSelectedMode(mode);
-    setSampleText(getRandomText(mode));
-    setUserInput("");
-    setTestEnded(false);
-    setIsTyping(false);
-  };
-
   const handleRestart = () => {
     setIsTyping(false);
     setTestEnded(false);
     setUserInput("");
   };
 
-  const getRandomText = (mode) => {
-    const options = modeData[mode];
-    const randomIndex = Math.floor(Math.random() * options.length);
-    return options[randomIndex];
-  };
 
   return (
     <div className="container" onClick={handleTypingStart}>
       <h1>🔴 RedFingers</h1>
       <p>You’ll Never Type Alone.</p>
 
-      <ModeSelector selectedMode={selectedMode} onSelectMode={handleModeChange} />
+      <DifficultySelector selected={difficulty} onSelect={setDifficulty} />
 
       {!testEnded && (
         <>

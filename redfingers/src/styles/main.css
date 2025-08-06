@@ -29,31 +29,6 @@ body {
   background-color: #eee;
 }
 
-.mode-selector {
-  margin-top: 2rem;
-}
-
-.mode-button {
-  background-color: #910c1b;
-  color: white;
-  margin: 0 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.mode-button:hover {
-  background-color: #a10f1f;
-}
-
-.mode-button.active {
-  background-color: white;
-  color: #c8102e;
-}
-
 .typing-box {
   margin-top: 2rem;
 }
@@ -89,4 +64,20 @@ body {
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.difficulty-button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  font-weight: bold;
+  background-color: #eee;
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.difficulty-button.selected {
+  background-color: #c8102e;
+  color: white;
 }
