@@ -22,12 +22,14 @@ export default function App() {
   };
 
   const getRandomText = () => {
+    const difficultyKey = difficulty.toLowerCase(); // 'easy', 'medium', 'hard'
+    const options = wordBank[difficultyKey];
     const targetWords = getWordCount();
     let words = [];
 
-    for (let i = 0; i < targetWords; i++) {
-      const randomWord = wordBank[Math.floor(Math.random() * wordBank.length)];
-      words.push(randomWord);
+    while (words.join(" ").split(" ").length < targetWords) {
+      const word = options[Math.floor(Math.random() * options.length)];
+      words.push(word);
     }
 
     return words.join(" ");
