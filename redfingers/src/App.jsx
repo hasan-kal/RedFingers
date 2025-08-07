@@ -4,6 +4,7 @@ import DifficultySelector from "./components/DifficultySelector";
 import TypingBox from "./components/TypingBox";
 import Timer from "./components/Timer";
 import Results from "./components/Results";
+import CustomTimeSelector from "./components/customTimeSelector";
 import "./styles/main.css";
 import { wordBank } from "./data/data";
 
@@ -12,18 +13,20 @@ export default function App() {
   const [testEnded, setTestEnded] = useState(false);
   const [userInput, setUserInput] = useState("");
   const [difficulty, setDifficulty] = useState("Medium");
+  const [customTime, setCustomTime] = useState(null);
 
   const getWordCount = () => {
+    if (difficulty === "custom") return 50;
     switch (difficulty) {
-      case "Easy": return 30;
-      case "Hard": return 60;
-      default: return 45;
+      case "Easy": return 75;
+      case "Hard": return 75;
+      default: return 75;
     }
   };
 
   const getRandomText = () => {
-    const difficultyKey = difficulty.toLowerCase(); // 'easy', 'medium', 'hard'
-    const options = wordBank[difficultyKey];
+    const difficultyKey = difficulty.toLowerCase(); // 'easy', 'medium', 'hard', or 'custom'
+    const options = wordBank[difficultyKey] || wordBank["medium"]; // fallback to medium
     const targetWords = getWordCount();
     let words = [];
 
@@ -37,13 +40,7 @@ export default function App() {
 
   const [sampleText, setSampleText] = useState(getRandomText());
 
-  const getTime = () => {
-    switch (difficulty) {
-      case "Easy": return 45;
-      case "Hard": return 20;
-      default: return 30;
-    }
-  };
+  const getTime = () => customTime || 30;
 
   const duration = getTime(); // dynamic duration based on difficulty
 
@@ -53,8 +50,11 @@ useEffect(() => {
   setIsTyping(false);
   setTestEnded(false);
   setUserInput("");
-  // Reset input state fully on difficulty change
   document.querySelector("input")?.focus();
+}, [difficulty]);
+
+useEffect(() => {
+  setCustomTime(null); // clear selected custom time when difficulty changes
 }, [difficulty]);
 
   useEffect(() => {
@@ -112,6 +112,14 @@ useEffect(() => {
       <p>You’ll Never Type Alone.</p>
 
       <DifficultySelector selected={difficulty} onSelect={setDifficulty} />
+      <CustomTimeSelector onSelect={(time) => {
+        setCustomTime(time);
+        setSampleText(getRandomText());
+        setIsTyping(false);
+        setTestEnded(false);
+        setUserInput("");
+        document.querySelector("input")?.focus();
+      }} />
 
       {!testEnded && (
         <>
