@@ -29,7 +29,7 @@ export default function Timer({ duration, isTyping, testEnded, onComplete }) {
 
   return (
     <div className="timer">
-      <h2>Time Left: {timeLeft}s</h2>
+      <h2>{timeLeft}s</h2>
     </div>
   );
 }
