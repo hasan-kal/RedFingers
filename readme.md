@@ -1,7 +1,7 @@
 # RedFingers - Advanced Typing Test Application
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.0.0-blue.svg" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
   <img src="https://img.shields.io/badge/react-19.1.0-61DAFB.svg" alt="React">
   <img src="https://img.shields.io/badge/vite-7.0.4-646CFF.svg" alt="Vite">
@@ -9,23 +9,29 @@
 
 ## 🚀 Overview
 
-RedFingers is a modern, interactive typing test application designed to help users improve their typing speed and accuracy. With customizable difficulty levels, real-time feedback, and comprehensive performance metrics, RedFingers provides an engaging platform for users to enhance their typing skills.
+RedFingers is a modern, interactive typing test application designed to help users improve their typing speed and accuracy. With customizable difficulty levels, real-time feedback, and comprehensive performance metrics, RedFingers provides an engaging platform for users to enhance their typing skills. The application features a football/soccer-themed word bank with varying difficulty levels.
+
+## 🌐 Live Demo
+
+Try RedFingers now: [redfingers.vercel.app](https://redfingers.vercel.app)
 
 ## ✨ Features
 
-- **Multiple Difficulty Levels**: Choose between Easy, Medium, and Hard modes with varying word counts and time limits
+- **Multiple Difficulty Levels**: Choose between Easy, Medium, and Hard modes with football/soccer-themed word sets
+- **Custom Time Option**: Select your preferred test duration
 - **Real-time Feedback**: Instant visual feedback on typing accuracy with character-by-character highlighting
 - **Performance Metrics**: Track your WPM (Words Per Minute), accuracy percentage, and other key statistics
 - **Responsive Design**: Enjoy a seamless experience across desktop and mobile devices
-- **Customizable Word Bank**: Different word sets based on difficulty level
-- **Timed Tests**: Dynamic time limits based on selected difficulty
+- **Football/Soccer-themed Word Bank**: Different word sets based on difficulty level (from simple terms to player names and phrases)
+- **Stats Tracking**: Save and view your typing test history locally
 
 ## 🛠️ Technologies
 
-- **React 19**: Utilizing the latest React features for optimal performance
-- **Vite**: Lightning-fast build tool and development server
+- **React 19.1.0**: Utilizing the latest React features for optimal performance
+- **Vite 7.0.4**: Lightning-fast build tool and development server
 - **Modern JavaScript (ES6+)**: Clean, maintainable code with the latest JavaScript features
 - **CSS3**: Custom styling for an intuitive and responsive user interface
+- **Local Storage**: For saving user statistics and preferences
 
 ## 📋 Prerequisites
 
@@ -36,7 +42,7 @@ RedFingers is a modern, interactive typing test application designed to help use
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/redfingers.git
+   git clone https://github.com/yourusername/RedFingers.git
    cd redfingers
    ```
 
@@ -59,9 +65,11 @@ RedFingers is a modern, interactive typing test application designed to help use
 ## 🚀 Usage
 
 1. **Select Difficulty**: Choose between Easy, Medium, or Hard difficulty levels
-2. **Start Typing**: Click on the text box and begin typing the displayed text
-3. **View Results**: After completing the test or when time runs out, review your performance metrics
-4. **Try Again**: Restart the test to improve your score
+2. **Set Custom Time** (Optional): Select a custom time duration for your test
+3. **Start Typing**: Click on the text box and begin typing the displayed text
+4. **View Results**: After completing the test or when time runs out, review your performance metrics
+5. **Check Stats**: View your typing history and progress
+6. **Try Again**: Restart the test to improve your score
 
 ## 📊 Performance Metrics
 
@@ -116,4 +124,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by Hasan Ahmed (https://github.com/hasan-kal)
