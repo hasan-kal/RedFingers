@@ -114,7 +114,29 @@ body {
 
 .timer-display {
   font-size: 1.2rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  animation: pulseTimer 1.5s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+@keyframes pulseTimer {
+  0% {
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .results-box {
