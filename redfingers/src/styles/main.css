@@ -467,3 +467,46 @@ body {
   background-color: rgba(255, 255, 255, 0.15);
   transform: scale(1.05);
 }
+
+.about-container {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1000;
+}
+
+.about-icon {
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: transform 0.2s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.about-icon:hover {
+  transform: scale(1.2);
+  opacity: 1;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.about-modal {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #f0f0f0;
+  padding: 12px 18px;
+  border-radius: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  width: 220px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  animation: fadeIn 0.3s ease;
+}
+
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

@@ -1,3 +1,4 @@
+import AboutModal from "./components/AboutModal";
 import { useState, useEffect } from "react";
 import StatsTracker from "./components/StatsTracker";
 import DifficultySelector from "./components/DifficultySelector";
@@ -101,49 +102,54 @@ useEffect(() => {
 
 
   return (
-    <div className="container">
-      <div className="logo-container">
-        <svg id="logoRF" className="logo-svg" width="140" height="140" viewBox="0 0 100 100">
-          <circle className="logo-ring" cx="50" cy="50" r="40" stroke="#c8102e" strokeWidth="6" fill="none" />
-          <text className="logo-text" x="50%" y="55%" textAnchor="middle" fill="#ffffff" fontSize="32px" fontFamily="'Inter', sans-serif" dy=".3em">RF</text>
-        </svg>
+    <>
+      <div className="container">
+        <div className="logo-container">
+          <svg id="logoRF" className="logo-svg" width="140" height="140" viewBox="0 0 100 100">
+            <circle className="logo-ring" cx="50" cy="50" r="40" stroke="#c8102e" strokeWidth="6" fill="none" />
+            <text className="logo-text" x="50%" y="55%" textAnchor="middle" fill="#ffffff" fontSize="32px" fontFamily="'Inter', sans-serif" dy=".3em">RF</text>
+          </svg>
+          <div className="about-wrapper">
+            <AboutModal />
+          </div>
+        </div>
+        <h1>Red Fingers</h1>
+        <p>You’ll Never Type Alone.</p>
+
+        <DifficultySelector selected={difficulty} onSelect={setDifficulty} />
+        <CustomTimeSelector onSelect={(time) => {
+          setCustomTime(time);
+          setSampleText(getRandomText());
+          setIsTyping(false);
+          setTestEnded(false);
+          setUserInput("");
+          document.querySelector("input")?.focus();
+        }} />
+
+        {!testEnded && (
+          <>
+            <Timer isTyping={isTyping} duration={duration} onComplete={handleTestComplete} />
+            <TypingBox
+              key={sampleText}
+              text={sampleText}
+              onStart={() => setIsTyping(true)}
+              userInput={userInput}
+              setUserInput={setUserInput}
+              onRestart={handleRestart}
+            />
+          </>
+        )}
+
+        {testEnded && (
+          <>
+            <Results userInput={userInput} targetText={sampleText} duration={duration} />
+            <button className="button" onClick={handleRestart} style={{ marginTop: "2rem" }}>
+              🔁 Restart
+            </button>
+            <StatsTracker />
+          </>
+        )}
       </div>
-      <h1>Red Fingers</h1>
-      <p>You’ll Never Type Alone.</p>
-
-      <DifficultySelector selected={difficulty} onSelect={setDifficulty} />
-      <CustomTimeSelector onSelect={(time) => {
-        setCustomTime(time);
-        setSampleText(getRandomText());
-        setIsTyping(false);
-        setTestEnded(false);
-        setUserInput("");
-        document.querySelector("input")?.focus();
-      }} />
-
-      {!testEnded && (
-        <>
-          <Timer isTyping={isTyping} duration={duration} onComplete={handleTestComplete} />
-          <TypingBox
-            key={sampleText}
-            text={sampleText}
-            onStart={() => setIsTyping(true)}
-            userInput={userInput}
-            setUserInput={setUserInput}
-            onRestart={handleRestart}
-          />
-        </>
-      )}
-
-      {testEnded && (
-        <>
-          <Results userInput={userInput} targetText={sampleText} duration={duration} />
-          <button className="button" onClick={handleRestart} style={{ marginTop: "2rem" }}>
-            🔁 Restart
-          </button>
-          <StatsTracker />
-        </>
-      )}
-    </div>
+    </>
   );
 }
