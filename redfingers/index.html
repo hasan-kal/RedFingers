@@ -2,9 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link id="dynamic-favicon" rel="icon" type="image/svg+xml" href="favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Red Fingers</title>
+    <script>
+      const canvas = document.createElement('canvas');
+      canvas.width = 64;
+      canvas.height = 64;
+      const ctx = canvas.getContext('2d');
+
+      let glow = 0;
+      let growing = true;
+
+      function drawFavicon() {
+        ctx.clearRect(0, 0, 64, 64);
+
+        // Background circle
+        ctx.beginPath();
+        ctx.arc(32, 32, 30, 0, Math.PI * 2);
+        ctx.fillStyle = '#c8102e';
+        ctx.fill();
+
+        // Glowing ring
+        ctx.beginPath();
+        ctx.arc(32, 32, 30, 0, Math.PI * 2);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = `rgba(255, 255, 255, ${glow})`;
+        ctx.stroke();
+
+        // RF text
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 28px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('RF', 32, 35);
+
+        const favicon = document.getElementById('dynamic-favicon');
+        favicon.href = canvas.toDataURL('image/png');
+
+        // Animate glow
+        if (growing) {
+          glow += 0.02;
+          if (glow >= 0.7) growing = false;
+        } else {
+          glow -= 0.02;
+          if (glow <= 0.2) growing = true;
+        }
+
+        requestAnimationFrame(drawFavicon);
+      }
+
+      drawFavicon();
+    </script>
   </head>
   <body>
     <div id="root"></div>

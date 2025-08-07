@@ -1,4 +1,4 @@
-# 🔴 RedFingers
+# 🔴 Red Fingers
 
 > *“You’ll Never Type Alone.”*  
 A Liverpool-themed typing challenge inspired by Monkeytype.  
