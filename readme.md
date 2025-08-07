@@ -19,7 +19,7 @@ Whether you're smashing out "You'll Never Walk Alone" or racing through player n
 - ⏱ Real-time WPM, accuracy, and error tracking
 - 🎨 Liverpool-inspired themes and styling
 - 📊 Performance stats after every round
-- 📁 Built with React + TailwindCSS
+- 📁 Built with React
 
 ---
 
